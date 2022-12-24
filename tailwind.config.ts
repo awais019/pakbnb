@@ -15,6 +15,9 @@ export default <Partial<Config>>{
     "./content/**/*.md",
   ],
   theme: {
+    screens: {
+      "4xl": "1920px",
+    },
     extend: {
       colors: {
         primary: "#dd5d5a",
@@ -23,6 +26,9 @@ export default <Partial<Config>>{
       },
       fontFamily: {
         sans: ["Lato", defaultTheme.fontFamily.sans],
+      },
+      maxWidth: {
+        "4xl": "1920px",
       },
     },
   },
