@@ -20,15 +20,21 @@ export default <Partial<Config>>{
     },
     extend: {
       colors: {
-        primary: "#dd5d5a",
-        black: "#181818",
-        "gray-50": "#f8f7f7",
+        primary: "#181818",
+        secondary: "#FF5C23",
       },
       fontFamily: {
         sans: ["Lato", defaultTheme.fontFamily.sans],
       },
       maxWidth: {
         "4xl": "1920px",
+      },
+      borderRadius: {
+        "4xl": "2rem",
+      },
+      backgroundImage: {
+        "menu-icon": "url('assets/images/icons/menu.svg')",
+        "user-icon": 'url("assets/images/icons/user.svg")',
       },
     },
   },

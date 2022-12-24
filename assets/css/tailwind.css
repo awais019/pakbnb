@@ -1,3 +1,28 @@
 @import "main.css";
 @import "fonts.css";
 
+@layer base {
+  .gradient {
+    background: hsla(31, 100%, 57%, 1);
+
+    background: linear-gradient(
+      90deg,
+      hsla(31, 100%, 57%, 1) 0%,
+      hsla(16, 100%, 57%, 1) 100%
+    );
+
+    background: -moz-linear-gradient(
+      90deg,
+      hsla(31, 100%, 57%, 1) 0%,
+      hsla(16, 100%, 57%, 1) 100%
+    );
+
+    background: -webkit-linear-gradient(
+      90deg,
+      hsla(31, 100%, 57%, 1) 0%,
+      hsla(16, 100%, 57%, 1) 100%
+    );
+
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#FF9623", endColorstr="#FF5C23", GradientType=1 );
+  }
+}
