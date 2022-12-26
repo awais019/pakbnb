@@ -32,10 +32,6 @@ export default <Partial<Config>>{
       borderRadius: {
         "4xl": "2rem",
       },
-      backgroundImage: {
-        "menu-icon": "url('assets/images/icons/menu.svg')",
-        "user-icon": 'url("assets/images/icons/user.svg")',
-      },
     },
   },
 };
