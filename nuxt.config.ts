@@ -9,4 +9,5 @@ export default defineNuxtConfig({
       },
     ],
   ],
+  plugins: ["~/plugins/clickOutside.ts"],
 });

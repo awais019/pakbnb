@@ -32,6 +32,10 @@ export default <Partial<Config>>{
       borderRadius: {
         "4xl": "2rem",
       },
+      boxShadow: {
+        dropdown:
+          "0px 14px 43px rgba(0, 0, 0, 0.12), 0px 1.75302px 29.8928px rgba(0, 0, 0, 0.06)",
+      },
     },
   },
 };
