@@ -1,6 +1,7 @@
 <template>
   <div class="w-full px-20">
     <HomeGallery :images="(home?.images as string[])" />
+    <HomeDetails :home="(home as Record<string, any>)" />
   </div>
 </template>
 
