@@ -1,6 +1,6 @@
 <template>
   <header
-    class="sticky w-full h-20 flex justify-between items-center shadow px-20 text-secondary font-normal"
+    class="sticky top-0 z-10 bg-white w-full h-20 flex justify-between items-center shadow px-20 text-secondary font-normal"
   >
     <div
       class="flex justify-between h-full items-center font-bold text-2xl gradient-text cursor-pointer"
