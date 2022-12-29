@@ -10,4 +10,11 @@ export default defineNuxtConfig({
     ],
   ],
   plugins: ["~/plugins/clickOutside.ts"],
+  runtimeConfig: {
+    public: {
+      mapbox: {
+        accessToken: process.env.MAPBOX_ACCESS_TOKEN,
+      },
+    },
+  },
 });

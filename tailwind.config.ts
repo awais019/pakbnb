@@ -39,6 +39,14 @@ export default <Partial<Config>>{
         custom:
           "0px 14px 43px rgba(0, 0, 0, 0.12), 0px 1.75302px 29.8928px rgba(0, 0, 0, 0.06)",
       },
+      backgroundImage: {
+        "minus-icon": "url('assets/images/icons/minus.svg')",
+        "plus-icon": "url('assets/images/icons/plus.svg')",
+        "location-icon": "url('assets/images/icons/location.svg')",
+        "arrows-expand-icon": "url('assets/images/icons/arrows-expand.svg')",
+        "arrows-shrink-icon": "url('assets/images/icons/arrows-shrink.svg')",
+        "checked-icon": "url('assets/images/icons/checked.svg')",
+      },
     },
   },
 };
