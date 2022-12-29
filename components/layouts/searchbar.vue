@@ -8,7 +8,7 @@
       <input type="search" placeholder="Enter location" class="w-full" />
     </div>
     <DatePicker />
-    <button class="gradient py-2 px-16 rounded-lg text-white text-xl mb-2">
+    <button class="gradient py-2 px-16 rounded-lg text-white text-xl mb-2 ml-4">
       Search
     </button>
   </form>

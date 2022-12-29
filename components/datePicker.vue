@@ -1,5 +1,5 @@
 <template>
-  <div class="relative flex mb-2 mr-4">
+  <div class="relative flex mb-2">
     <div class="input mr-4 w-1/2" @click="showDatePicker = true">
       <input placeholder="Check in" :value="getStart()" class="w-full" />
       <icons-calender />
@@ -12,7 +12,7 @@
       <div
         v-if="showDatePicker"
         v-click-outside="() => (showDatePicker = false)"
-        class="absolute top-14 mr-4 right-0 left-0"
+        class="absolute top-14 right-0 left-0"
       >
         <DatePicker
           is-range

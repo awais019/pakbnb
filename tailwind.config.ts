@@ -27,6 +27,7 @@ export default <Partial<Config>>{
         sans: ["Lato", defaultTheme.fontFamily.sans],
       },
       maxWidth: {
+        "2xl": "1280px",
         "4xl": "1920px",
       },
       borderRadius: {
