@@ -7,7 +7,7 @@
       <icons-search />
       <input type="search" placeholder="Enter location" class="w-full" />
     </div>
-    <LayoutsDatePicker />
+    <DatePicker />
     <button class="gradient py-2 px-16 rounded-lg text-white text-xl mb-2">
       Search
     </button>
