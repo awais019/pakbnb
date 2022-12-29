@@ -1,5 +1,5 @@
 <template>
-  <div class="max-w-4xl w-full h-full 4xl:m-auto">
+  <div class="max-w-4xl w-full h-full 4xl:m-auto overflow-x-auto">
     <layouts-header />
     <layouts-home-landing />
     <slot />
