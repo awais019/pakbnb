@@ -8,8 +8,8 @@
     >
       <nuxt-link to="/">
         <!-- <img src="~/assets/images/logo.svg" alt="" class="w-8 h-8" /> -->
+        <span>pakbnb</span>
       </nuxt-link>
-      <span>pakbnb</span>
     </div>
     <nav class="h-12 flex items-center justify-between rounded-4xl nav">
       <span class="nav-item border-r-2">
