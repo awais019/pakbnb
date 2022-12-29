@@ -22,6 +22,7 @@ export default <Partial<Config>>{
       colors: {
         primary: "#FF5C23",
         secondary: "#181818",
+        "secondary-light": "#F6F8FB",
       },
       fontFamily: {
         sans: ["Lato", defaultTheme.fontFamily.sans],
