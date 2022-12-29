@@ -1,6 +1,7 @@
 <template>
   <header
-    class="sticky top-0 z-10 bg-white w-full h-20 flex justify-between items-center shadow px-20 text-secondary font-normal"
+    class="bg-white w-full h-20 flex justify-between items-center shadow px-20 text-secondary font-normal"
+    :class="[isSticky ? 'sticky top-0 z-50' : '']"
   >
     <div
       class="flex justify-between h-full items-center font-bold text-2xl gradient-text cursor-pointer"
@@ -109,6 +110,12 @@
 <script lang="ts" setup>
   const menuItems = [{ name: "Log in" }, { name: "Sign up" }, { name: "Help" }];
   const open = ref(false);
+  defineProps({
+    isSticky: {
+      type: Boolean,
+      default: true,
+    },
+  });
 </script>
 
 <style lang="postcss" scoped>
