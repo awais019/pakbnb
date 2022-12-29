@@ -1,9 +1,9 @@
 <template>
   <header
-    class="w-full h-20 flex justify-between items-center shadow px-20 text-primary font-normal"
+    class="sticky w-full h-20 flex justify-between items-center shadow px-20 text-secondary font-normal"
   >
     <div
-      class="flex justify-between h-full items-center font-bold text-2xl text-secondary cursor-pointer"
+      class="flex justify-between h-full items-center font-bold text-2xl gradient-text cursor-pointer"
     >
       <nuxt-link to="/">
         <!-- <img src="~/assets/images/logo.svg" alt="" class="w-8 h-8" /> -->
@@ -23,8 +23,8 @@
     </nav>
 
     <div class="h-full flex items-center">
-      <button class="w-1/2 flex justify-center items-center">
-        <span class="p-3.5 rounded-full hover:bg-neutral-100">
+      <button class="w-1/2 mr-2 flex justify-center items-center">
+        <span class="p-3.5 rounded-full hover:bg-neutral-100 flex items-center">
           <svg
             width="16"
             height="16"
@@ -37,9 +37,10 @@
               fill="black"
             />
           </svg>
+          <span class="px-2">Language</span>
         </span>
       </button>
-      <div class="h-12 w-24">
+      <div class="h-12 w-20">
         <div
           class="rounded-4xl border-2 px-2 py-1 flex justify-between items-center cursor-pointer hover:shadow-md"
           @click="open = !open"
@@ -112,10 +113,10 @@
 
 <style lang="postcss" scoped>
   .router-link-active {
-    @apply text-secondary;
+    @apply text-primary;
   }
   .nav-item {
-    @apply text-sm font-normal text-primary px-8 py-2 cursor-pointer;
+    @apply text-sm font-normal text-secondary px-8 py-2 cursor-pointer;
   }
   .nav {
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.04);
@@ -123,9 +124,9 @@
     border: 2px solid #ebebeb;
   }
   .btn {
-    @apply bg-transparent border-2 border-primary font-bold px-8 py-2 rounded;
+    @apply bg-transparent border-2 border-secondary font-bold px-8 py-2 rounded;
   }
   .btn:hover {
-    @apply bg-primary text-white;
+    @apply bg-secondary text-white;
   }
 </style>

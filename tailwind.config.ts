@@ -20,8 +20,8 @@ export default <Partial<Config>>{
     },
     extend: {
       colors: {
-        primary: "#181818",
-        secondary: "#FF5C23",
+        primary: "#FF5C23",
+        secondary: "#181818",
       },
       fontFamily: {
         sans: ["Lato", defaultTheme.fontFamily.sans],
@@ -31,9 +31,10 @@ export default <Partial<Config>>{
       },
       borderRadius: {
         "4xl": "2rem",
+        "5xl": "2.5rem",
       },
       boxShadow: {
-        dropdown:
+        custom:
           "0px 14px 43px rgba(0, 0, 0, 0.12), 0px 1.75302px 29.8928px rgba(0, 0, 0, 0.06)",
       },
     },

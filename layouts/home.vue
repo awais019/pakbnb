@@ -1,6 +1,7 @@
 <template>
   <div class="max-w-4xl w-full h-full 4xl:m-auto">
-    <layouts-home-header />
+    <layouts-header />
+    <layouts-home-landing />
     <slot />
   </div>
 </template>
