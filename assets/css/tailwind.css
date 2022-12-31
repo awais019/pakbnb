@@ -1,3 +1,54 @@
 @import "main.css";
 @import "fonts.css";
 
+@layer base {
+  h1 {
+    @apply text-4xl font-bold text-secondary py-3;
+  }
+  h2 {
+    @apply text-2xl font-bold text-secondary py-3;
+  }
+  .input {
+    @apply bg-slate-100 px-2 py-1 rounded-lg flex items-center;
+  }
+  input {
+    @apply bg-slate-100 text-base font-normal text-secondary p-2;
+  }
+
+  input:focus {
+    @apply outline-none;
+  }
+  .gradient {
+    background: hsla(33, 100%, 56%, 1);
+
+    background: linear-gradient(
+      90deg,
+      hsla(33, 100%, 56%, 1) 0%,
+      hsla(16, 99%, 57%, 1) 100%
+    );
+
+    background: -moz-linear-gradient(
+      90deg,
+      hsla(33, 100%, 56%, 1) 0%,
+      hsla(16, 99%, 57%, 1) 100%
+    );
+
+    background: -webkit-linear-gradient(
+      90deg,
+      hsla(33, 100%, 56%, 1) 0%,
+      hsla(16, 99%, 57%, 1) 100%
+    );
+
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#FF9B21", endColorstr="#FE5E23", GradientType=1 );
+  }
+
+  .gradient-text {
+    background: -webkit-linear-gradient(
+      90deg,
+      hsla(33, 100%, 56%, 1) 0%,
+      hsla(16, 99%, 57%, 1) 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}

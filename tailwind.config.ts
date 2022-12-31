@@ -20,15 +20,33 @@ export default <Partial<Config>>{
     },
     extend: {
       colors: {
-        primary: "#dd5d5a",
-        black: "#181818",
-        "gray-50": "#f8f7f7",
+        primary: "#FF5C23",
+        secondary: "#181818",
+        "secondary-light": "#F6F8FB",
       },
       fontFamily: {
         sans: ["Lato", defaultTheme.fontFamily.sans],
       },
       maxWidth: {
+        "2xl": "1280px",
         "4xl": "1920px",
+      },
+      borderRadius: {
+        "4xl": "2rem",
+        "5xl": "2.5rem",
+      },
+      boxShadow: {
+        custom:
+          "0px 14px 43px rgba(0, 0, 0, 0.12), 0px 1.75302px 29.8928px rgba(0, 0, 0, 0.06)",
+      },
+      backgroundImage: {
+        "minus-icon": "url('assets/images/icons/minus.svg')",
+        "plus-icon": "url('assets/images/icons/plus.svg')",
+        "location-icon": "url('assets/images/icons/location.svg')",
+        "arrows-expand-icon": "url('assets/images/icons/arrows-expand.svg')",
+        "arrows-shrink-icon": "url('assets/images/icons/arrows-shrink.svg')",
+        "checked-icon": "url('assets/images/icons/checked.svg')",
+        marker: "url('assets/images/icons/marker.svg')",
       },
     },
   },
