@@ -5,6 +5,7 @@
     <hr />
     <HomeDescription :home="(home as Record<string, any>)" />
     <hr />
+    <Map :latlng="(home?._geoloc as Object)" />
   </div>
 </template>
 

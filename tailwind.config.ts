@@ -46,6 +46,7 @@ export default <Partial<Config>>{
         "arrows-expand-icon": "url('assets/images/icons/arrows-expand.svg')",
         "arrows-shrink-icon": "url('assets/images/icons/arrows-shrink.svg')",
         "checked-icon": "url('assets/images/icons/checked.svg')",
+        marker: "url('assets/images/icons/marker.svg')",
       },
     },
   },
