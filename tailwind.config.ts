@@ -48,6 +48,9 @@ export default <Partial<Config>>{
         "checked-icon": "url('assets/images/icons/checked.svg')",
         marker: "url('assets/images/icons/marker.svg')",
       },
+      gridTemplateColumns: {
+        "2": "1fr 5fr",
+      },
     },
   },
 };

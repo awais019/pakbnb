@@ -5,8 +5,8 @@
     data-prefix="fas"
     data-icon="star"
     role="icon"
-    width="18"
-    height="18"
+    width="16"
+    height="16"
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 576 512"
   >
