@@ -1,5 +1,5 @@
 <template>
-  <div class="my-10 py-8">
+  <div class="my-10">
     <div
       v-for="(review, index) in reviews"
       :key="index"
@@ -23,7 +23,6 @@
 </template>
 
 <script lang="ts" setup>
-  import shortDate from "~~/utils/shortDate";
   defineProps<{
     reviews: Record<string, any>[];
   }>();

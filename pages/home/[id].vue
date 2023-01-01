@@ -8,18 +8,22 @@
     <Map :latlng="(home?._geoloc as Object)" />
     <hr />
     <HomeReviews :reviews="(homereviews as Record<string, any>[])" />
+    <hr />
+    <HomeHost :host="(host as Object)" />
   </div>
 </template>
 
 <script lang="ts" setup>
   import homes from "~/data/homes.json";
   import reviews from "~/data/reviews.json";
+  import users from "~/data/users.json";
 
   const route = useRoute();
   const { id } = route.params;
 
   const home = homes.find((home) => home.objectID === id);
   const homereviews = reviews.filter((reviews) => reviews.homeId === id);
+  const host = users.find((user) => user.homeId.includes(id as string));
 </script>
 
 <style lang="postcss" scoped></style>
