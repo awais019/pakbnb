@@ -20,10 +20,9 @@
   const route = useRoute();
   const { id } = route.params;
 
-  const { $getHomeById } = useNuxtApp();
+  const { $getHomeById, $getReviewsByHomeId } = useNuxtApp();
   const home = await $getHomeById(id);
-
-  const homereviews = reviews.filter((reviews) => reviews.homeId === id);
+  const homereviews = await $getReviewsByHomeId(id);
 
   const host = users.find((user) => user.homeId.includes(id as string));
 </script>
