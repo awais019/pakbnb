@@ -8,6 +8,13 @@ export default defineNuxtConfig({
         cssPath: "~/assets/css/tailwind.css",
       },
     ],
+    [
+      "@nuxtjs/algolia",
+      {
+        applicationId: process.env.ALGOLIA_APP_ID,
+        apiKey: process.env.ALGOLIA_API_KEY,
+      },
+    ],
   ],
   plugins: ["~/plugins/clickOutside.ts"],
   runtimeConfig: {

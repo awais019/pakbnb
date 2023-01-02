@@ -13,6 +13,7 @@
     "nuxt": "3.0.0"
   },
   "dependencies": {
+    "@nuxtjs/algolia": "^1.4.0",
     "mapbox-gl": "^2.11.1",
     "v-calendar": "^3.0.0-alpha.8"
   }
