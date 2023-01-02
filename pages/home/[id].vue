@@ -14,17 +14,13 @@
 </template>
 
 <script lang="ts" setup>
-  import reviews from "~/data/reviews.json";
-  import users from "~/data/users.json";
-
   const route = useRoute();
   const { id } = route.params;
 
-  const { $getHomeById, $getReviewsByHomeId } = useNuxtApp();
+  const { $getHomeById, $getReviewsByHomeId, $getUserByHomeId } = useNuxtApp();
   const home = await $getHomeById(id);
   const homereviews = await $getReviewsByHomeId(id);
-
-  const host = users.find((user) => user.homeId.includes(id as string));
+  const host = await $getUserByHomeId(id);
 </script>
 
 <style lang="postcss" scoped></style>

@@ -20,6 +20,7 @@ export default defineNuxtConfig({
     "~/plugins/clickOutside.ts",
     "~/plugins/homes.ts",
     "~/plugins/reviews.ts",
+    "~/plugins/users.ts",
   ],
   runtimeConfig: {
     public: {
