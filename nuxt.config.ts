@@ -16,7 +16,7 @@ export default defineNuxtConfig({
       },
     ],
   ],
-  plugins: ["~/plugins/clickOutside.ts"],
+  plugins: ["~/plugins/clickOutside.ts", "~/plugins/homes.ts"],
   runtimeConfig: {
     public: {
       mapbox: {

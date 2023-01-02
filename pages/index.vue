@@ -12,10 +12,13 @@
 </template>
 
 <script lang="ts" setup>
-  import homes from "~/data/homes.json";
+  // import homes from "~/data/homes.json";
   definePageMeta({
     layout: "home",
   });
+
+  const { $getHomes } = useNuxtApp();
+  const homes = await $getHomes();
 </script>
 
 <style scoped></style>
