@@ -4,7 +4,18 @@
   </div>
   <div class="w-1/2" v-if="homes">
     <layouts-header />
-    <div></div>
+    <div class="px-20 my-10">
+      <div
+        v-if="homes"
+        class="w-full grid grid-cols-3 gap-x-2.5 gap-y-20 align-middle"
+      >
+        <div v-for="home in homes" :key="home.objectID">
+          <nuxt-link :to="`/home/${home.objectID}`">
+            <home-card :home="home" />
+          </nuxt-link>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -20,7 +31,6 @@
   onMounted(async () => {
     const { $getHomesByLocation } = useNuxtApp();
     homes.value = await $getHomesByLocation({ lat, lng });
-    console.log(homes.value);
   });
 </script>
 
