@@ -16,6 +16,7 @@
         </div>
       </div>
     </div>
+    <search-pagination :nbPages="pages" @change="(page) => changePage(page)" />
   </div>
 </template>
 
@@ -25,12 +26,20 @@
   });
   const route = useRoute();
   const { lat, lng } = route.query;
-
+  let pages = ref(0);
   const homes = ref();
+
+  async function changePage(page: number) {
+    const { $getHomesByLocation } = useNuxtApp();
+    const { data } = await $getHomesByLocation({ lat, lng }, page);
+    homes.value = data;
+  }
 
   onMounted(async () => {
     const { $getHomesByLocation } = useNuxtApp();
-    homes.value = await $getHomesByLocation({ lat, lng });
+    const { data, nbPages } = await $getHomesByLocation({ lat, lng });
+    homes.value = data;
+    pages.value = nbPages;
   });
 </script>
 

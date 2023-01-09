@@ -79,7 +79,7 @@
   function flyToMarker(marker: Marker) {
     map.flyTo({
       center: marker.getLngLat(),
-      zoom: 15,
+      zoom: 20,
       offset: [0, -100],
     });
   }
@@ -92,11 +92,20 @@
     updatePopup(marker);
   }
 
+  watch(props.homes, (val, newVal) => {
+    console.log(val, newVal);
+  });
+
+  onUpdated(() => {
+    markers.forEach((marker) => marker.remove());
+    map.setZoom(12);
+    addMarkers();
+  });
   onMounted(() => {
     map = new mapboxgl.Map({
       container: "map",
       style: "mapbox://styles/mapbox/streets-v12",
-      zoom: 15,
+      zoom: 12,
       scrollZoom: true,
     });
     map.addControl(

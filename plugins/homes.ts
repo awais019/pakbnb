@@ -24,8 +24,7 @@ export default defineNuxtPlugin((nuxtApp) => {
         aroundRadius: 20000,
       };
       await search({ requestOptions });
-
-      return result.value.hits;
+      return { data: result.value.hits, nbPages: result.value.nbPages };
     }
   );
 });
