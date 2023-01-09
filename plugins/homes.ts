@@ -16,8 +16,10 @@ export default defineNuxtPlugin((nuxtApp) => {
 
   nuxtApp.provide(
     "getHomesByLocation",
-    async (latlng: { lat: number; lng: number }) => {
+    async (latlng: { lat: number; lng: number }, page = 0) => {
       const requestOptions = {
+        hitsPerPage: 6,
+        page,
         aroundLatLng: `${latlng.lat}, ${latlng.lng}`,
         aroundRadius: 20000,
       };

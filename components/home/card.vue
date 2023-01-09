@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col justify-between h-full">
+  <div v-if="home" class="flex flex-col justify-between h-full">
     <img :src="home.images[0]" class="max-w-full h-full rounded-lg" />
     <br />
     <div>
