@@ -1,11 +1,21 @@
 <template>
   <div class="relative flex mb-2">
     <div class="input mr-4 w-1/2" @click="showDatePicker = true">
-      <input placeholder="Check in" :value="getStart()" class="w-full" />
+      <input
+        placeholder="Check in"
+        :value="getStart()"
+        class="w-full"
+        @focus.native="$emit('dateFocus')"
+      />
       <icons-calender />
     </div>
     <div class="input w-1/2" @click="showDatePicker = true">
-      <input placeholder="Check out" :value="getEnd()" class="w-full" />
+      <input
+        placeholder="Check out"
+        :value="getEnd()"
+        class="w-full"
+        @focus.native="$emit('dateFocus')"
+      />
       <icons-calender />
     </div>
     <ClientOnly>
