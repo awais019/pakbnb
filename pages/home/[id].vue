@@ -5,7 +5,7 @@
     <hr />
     <HomeDescription :home="(home as Record<string, any>)" />
     <hr />
-    <Map :latlng="(home?._geoloc as Object)" />
+    <HomeMap :latlng="(home?._geoloc as Object)" />
     <hr />
     <HomeReviews :reviews="(homereviews as Record<string, any>[])" />
     <hr />
