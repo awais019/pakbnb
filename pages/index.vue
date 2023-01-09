@@ -12,7 +12,6 @@
 </template>
 
 <script lang="ts" setup>
-  // import homes from "~/data/homes.json";
   definePageMeta({
     layout: "home",
   });

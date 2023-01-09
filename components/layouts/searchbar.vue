@@ -1,7 +1,7 @@
 <template>
   <form
     class="flex relative py-6 px-8 bg-white shadow-custom my-auto rounded-2xl flex-wrap"
-    @submit.prevent
+    @submit.prevent="() => search()"
     @click.native="(e) => clicked(e)"
   >
     <div class="input mb-2 mr-4 flex-1">
@@ -32,6 +32,7 @@
           () => {
             query = suggestion.place_name;
             isFocused = false;
+            location = { lat: suggestion.center[1], lng: suggestion.center[0] };
           }
         "
       >
@@ -49,6 +50,10 @@
   const endpoint = "mapbox.places";
 
   const query = useDebouncedRef("", 200, false);
+  const location = ref<{
+    lat: number;
+    lng: number;
+  }>();
   const suggestions = ref<Places>();
 
   const isFocused = ref(false);
@@ -59,10 +64,26 @@
       pick: ["features"],
     });
     suggestions.value = data.value as Places;
+    if (!!!query.value) {
+      location.value = undefined;
+    }
   });
   function clicked(e: MouseEvent) {
     if (e.target instanceof HTMLFormElement) {
       isFocused.value = false;
+    }
+  }
+  async function search() {
+    const router = useRouter();
+    if (location.value && query.value) {
+      router.push({
+        name: "search",
+        query: {
+          place: query.value,
+          lat: location.value.lat,
+          lng: location.value.lng,
+        },
+      });
     }
   }
 </script>

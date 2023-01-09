@@ -10,7 +10,20 @@ export default defineNuxtPlugin((nuxtApp) => {
       filters: `objectID:${id}`,
     };
     await search({ requestOptions });
-    
+
     return result.value.hits[0];
   });
+
+  nuxtApp.provide(
+    "getHomesByLocation",
+    async (latlng: { lat: number; lng: number }) => {
+      const requestOptions = {
+        aroundLatLng: `${latlng.lat}, ${latlng.lng}`,
+        aroundRadius: 20000,
+      };
+      await search({ requestOptions });
+
+      return result.value.hits;
+    }
+  );
 });
