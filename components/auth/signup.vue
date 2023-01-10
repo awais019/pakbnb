@@ -123,6 +123,7 @@
           </div>
           <div
             class="w-full flex gap-20 bg-athens-gray border-1 border-mischka px-2 py-3 rounded-lg cursor-pointer"
+            @click="signinWithFacebook()"
           >
             <span>
               <svg
@@ -191,6 +192,14 @@
 
   async function signinWithGoogle() {
     const successful = await authStore.signinWithGoogle();
+    console.log(successful);
+    if (successful) {
+      handleClick();
+    }
+  }
+
+  async function signinWithFacebook() {
+    const successful = await authStore.signinWithFacebook();
     console.log(successful);
     if (successful) {
       handleClick();
