@@ -8,7 +8,7 @@
         v-for="item in menuItems"
         :key="item.name"
         class="nav-item"
-        @click="$emit('click', item)"
+        @click="handleClick(item.name)"
       >
         {{ item.name }}
       </div>
@@ -25,9 +25,15 @@
     },
   });
 
-  const emits = defineEmits(["outsideClick"]);
+  const emits = defineEmits<{
+    (e: "outsideClick"): void;
+    (e: "openPopup", name: string): void;
+  }>();
   function handleClickOutside() {
     emits("outsideClick");
+  }
+  function handleClick(name: string) {
+    emits("openPopup", name);
   }
 </script>
 

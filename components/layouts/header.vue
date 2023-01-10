@@ -101,10 +101,12 @@
           v-if="open"
           :menuItems="menuItems"
           @outsideClick="open = false"
+          @openPopup="(name) => openPopups(name)"
         />
       </div>
     </div>
   </header>
+  <auth-signup v-if="openSignup" @close="openSignup = false" />
 </template>
 
 <script lang="ts" setup>
@@ -116,6 +118,15 @@
       default: true,
     },
   });
+
+  const openSignup = ref(false);
+
+  function openPopups(name: string) {
+    open.value = false;
+    if (name === "Sign up") {
+      openSignup.value = true;
+    }
+  }
 </script>
 
 <style lang="postcss" scoped>
