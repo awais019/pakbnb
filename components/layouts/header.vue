@@ -65,7 +65,7 @@
             </svg>
           </span>
           <span v-else>
-            <img :src="authStore.photoUrl" class="h-8 w-8 rounded-full" />
+            <img :src="authStore.photoUrl" />
           </span>
 
           <span>

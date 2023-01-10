@@ -21,6 +21,7 @@ export default defineNuxtConfig({
         autoImports: [["defineStore", "definePiniaStore"], "acceptHMRUpdate"],
       },
     ],
+    "@pinia-plugin-persistedstate/nuxt",
   ],
   plugins: [
     "~/plugins/clickOutside.ts",

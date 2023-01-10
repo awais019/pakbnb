@@ -30,7 +30,7 @@ export const useAuthStore = definePiniaStore("authStore", {
         createUserWithEmailAndPassword($auth, email, password).then(() => {
           updateProfile($auth.currentUser, {
             displayName: `${firstname} ${lastname}`,
-            photoURL: `https://ui-avatars.com/api/?name=${firstname}+${lastname}&background=0D8ABC&color=fff&size=32`,
+            photoURL: `https://ui-avatars.com/api/?name=${firstname}+${lastname}&background=717171&color=fff&size=32&rounded=true`,
           }).then(() => {
             this.user = $auth.currentUser;
           });
@@ -38,13 +38,14 @@ export const useAuthStore = definePiniaStore("authStore", {
         return true;
       } catch (error: unknown) {
         if (error instanceof Error) {
-          console.log(error);
-
           return false;
         }
       }
       return false;
     },
+  },
+  persist: {
+    storage: persistedState.localStorage,
   },
 });
 
