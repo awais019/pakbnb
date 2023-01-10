@@ -106,7 +106,26 @@
       </div>
     </div>
   </header>
-  <auth-signup v-if="openSignup" @close="openSignup = false" />
+  <auth-signup
+    v-if="openSignup"
+    @close="openSignup = false"
+    @swap="
+      () => {
+        openSignup = false;
+        openSignin = true;
+      }
+    "
+  />
+  <auth-login
+    v-if="openSignin"
+    @close="openSignin = false"
+    @swap="
+      () => {
+        openSignin = false;
+        openSignup = true;
+      }
+    "
+  />
 </template>
 
 <script lang="ts" setup>
@@ -120,11 +139,14 @@
   });
 
   const openSignup = ref(false);
+  const openSignin = ref(false);
 
   function openPopups(name: string) {
     open.value = false;
     if (name === "Sign up") {
       openSignup.value = true;
+    } else if (name === "Log in") {
+      openSignin.value = true;
     }
   }
 </script>

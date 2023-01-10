@@ -35,23 +35,19 @@
           </svg>
         </span>
       </div>
-      <h1>Create an account</h1>
-      <p class="text-neutral-400">
-        Already have an account?
-        <span class="gradient-text cursor-pointer" @click="swap()"
-          >Sign in</span
-        >
-      </p>
+      <h1>Welcome back</h1>
+      <p class="text-neutral-400">Sign in with your credientials</p>
       <form class="flex flex-col w-full h-full gap-6 pt-16">
-        <div class="flex gap-2">
-          <input type="text" placeholder="First name" class="w-1/2" required />
-          <input type="text" placeholder="Last name" class="w-1/2" />
-        </div>
         <input type="text" placeholder="Email" required />
         <input type="text" placeholder="Password" required />
-        <input type="text" placeholder="Confirm password" required />
-        <input type="submit" value="Sign up" class="gradient" />
-        <div class="pt-2 flex flex-col items-center gap-2 font-medium">
+        <input type="submit" value="Sign in" class="gradient" />
+        <p class="text-neutral-400">
+          Don't have an account?
+          <span class="gradient-text cursor-pointer" @click="swap()"
+            >Sign up</span
+          >
+        </p>
+        <div class="pt-1 flex flex-col items-center gap-2 font-medium">
           <span class="text-neutral-400 mb-3">or</span>
           <div
             class="w-full flex gap-20 bg-athens-gray border-1 border-mischka px-2 py-3 rounded-lg cursor-pointer"
