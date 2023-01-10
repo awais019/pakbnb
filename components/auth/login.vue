@@ -39,7 +39,7 @@
       <p class="text-neutral-400">Sign in with your credientials</p>
       <form class="flex flex-col w-full h-full gap-6 pt-16">
         <input type="text" placeholder="Email" required />
-        <input type="text" placeholder="Password" required />
+        <input type="password" placeholder="Password" required />
         <input type="submit" value="Sign in" class="gradient" />
         <p class="text-neutral-400">
           Don't have an account?

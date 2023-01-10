@@ -18,7 +18,7 @@ export default defineNuxtConfig({
     [
       "@pinia/nuxt",
       {
-        autoImports: [["defineStore", "definePiniaStore"], "acceptHRMUpdate"],
+        autoImports: [["defineStore", "definePiniaStore"], "acceptHMRUpdate"],
       },
     ],
   ],
