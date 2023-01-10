@@ -135,7 +135,33 @@
   import { useAuthStore } from "~/store/auth";
   const authStore = useAuthStore();
 
-  const menuItems = [{ name: "Log in" }, { name: "Sign up" }, { name: "Help" }];
+  const menuItems = computed(() => {
+    if (authStore.loggedIn) {
+      return [
+        {
+          name: "Profile",
+        },
+        {
+          name: "Help",
+        },
+        {
+          name: "Log out",
+        },
+      ];
+    } else {
+      return [
+        {
+          name: "Log in",
+        },
+        {
+          name: "Sign up",
+        },
+        {
+          name: "Help",
+        },
+      ];
+    }
+  });
   const open = ref(false);
   defineProps({
     isSticky: {
@@ -147,12 +173,14 @@
   const openSignup = ref(false);
   const openSignin = ref(false);
 
-  function openPopups(name: string) {
+  async function openPopups(name: string) {
     open.value = false;
     if (name === "Sign up") {
       openSignup.value = true;
     } else if (name === "Log in") {
       openSignin.value = true;
+    } else if (name === "Log out") {
+      await authStore.signout();
     }
   }
 </script>

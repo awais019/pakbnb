@@ -2,6 +2,7 @@ import {
   createUserWithEmailAndPassword,
   User,
   updateProfile,
+  signInWithEmailAndPassword,
 } from "firebase/auth";
 
 export const useAuthStore = definePiniaStore("authStore", {
@@ -35,6 +36,28 @@ export const useAuthStore = definePiniaStore("authStore", {
             this.user = $auth.currentUser;
           });
         });
+        return true;
+      } catch (error: unknown) {
+        if (error instanceof Error) {
+          return false;
+        }
+      }
+      return false;
+    },
+    async signout() {
+      const { $auth } = useNuxtApp();
+      $auth.signOut();
+      this.user = null;
+    },
+    async signin(email: string, password: string) {
+      const { $auth } = useNuxtApp();
+      try {
+        const { user } = await signInWithEmailAndPassword(
+          $auth,
+          email,
+          password
+        );
+        this.user = user;
         return true;
       } catch (error: unknown) {
         if (error instanceof Error) {
