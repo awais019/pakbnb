@@ -15,6 +15,12 @@ export default defineNuxtConfig({
         apiKey: process.env.ALGOLIA_API_KEY,
       },
     ],
+    [
+      "@pinia/nuxt",
+      {
+        autoImports: [["defineStore", "definePiniaStore"], "acceptHRMUpdate"],
+      },
+    ],
   ],
   plugins: [
     "~/plugins/clickOutside.ts",
