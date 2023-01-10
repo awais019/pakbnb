@@ -3,6 +3,8 @@ import {
   User,
   updateProfile,
   signInWithEmailAndPassword,
+  signInWithPopup,
+  GoogleAuthProvider,
 } from "firebase/auth";
 
 export const useAuthStore = definePiniaStore("authStore", {
@@ -57,6 +59,20 @@ export const useAuthStore = definePiniaStore("authStore", {
           email,
           password
         );
+        this.user = user;
+        return true;
+      } catch (error: unknown) {
+        if (error instanceof Error) {
+          return false;
+        }
+      }
+      return false;
+    },
+    async signinWithGoogle() {
+      const { $auth } = useNuxtApp();
+      const provider = new GoogleAuthProvider();
+      try {
+        const { user } = await signInWithPopup($auth, provider);
         this.user = user;
         return true;
       } catch (error: unknown) {

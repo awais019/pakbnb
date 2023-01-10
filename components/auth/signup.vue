@@ -79,6 +79,7 @@
           <span class="text-neutral-400 mb-3">or</span>
           <div
             class="w-full flex gap-20 bg-athens-gray border-1 border-mischka px-2 py-3 rounded-lg cursor-pointer"
+            @click="signinWithGoogle()"
           >
             <span
               ><svg
@@ -173,8 +174,8 @@
     if (password !== confirmPassword) {
       return;
     }
-    console.log('success');
-    
+    console.log("success");
+
     const successful = await authStore.signup(
       firstname,
       lastname,
@@ -182,7 +183,15 @@
       password
     );
     console.log(successful);
-    
+
+    if (successful) {
+      handleClick();
+    }
+  }
+
+  async function signinWithGoogle() {
+    const successful = await authStore.signinWithGoogle();
+    console.log(successful);
     if (successful) {
       handleClick();
     }
