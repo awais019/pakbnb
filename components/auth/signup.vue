@@ -42,19 +42,44 @@
           >Sign in</span
         >
       </p>
-      <form class="flex flex-col w-full h-full gap-6 pt-16">
+      <form
+        class="flex flex-col w-full h-full gap-6 pt-16"
+        @submit.prevent="submit()"
+      >
         <div class="flex gap-2">
-          <input type="text" placeholder="First name" class="w-1/2" required />
-          <input type="text" placeholder="Last name" class="w-1/2" />
+          <input
+            type="text"
+            placeholder="First name"
+            class="w-1/2"
+            required
+            v-model="user.firstname"
+          />
+          <input
+            type="text"
+            placeholder="Last name"
+            class="w-1/2"
+            v-model="user.lastname"
+          />
         </div>
-        <input type="text" placeholder="Email" required />
-        <input type="text" placeholder="Password" required />
-        <input type="text" placeholder="Confirm password" required />
+        <input type="text" placeholder="Email" required v-model="user.email" />
+        <input
+          type="password"
+          placeholder="Password"
+          required
+          v-model="user.password"
+        />
+        <input
+          type="password"
+          placeholder="Confirm password"
+          required
+          v-model="user.confirmPassword"
+        />
         <input type="submit" value="Sign up" class="gradient" />
         <div class="pt-2 flex flex-col items-center gap-2 font-medium">
           <span class="text-neutral-400 mb-3">or</span>
           <div
             class="w-full flex gap-20 bg-athens-gray border-1 border-mischka px-2 py-3 rounded-lg cursor-pointer"
+            @click="signinWithGoogle()"
           >
             <span
               ><svg
@@ -98,6 +123,7 @@
           </div>
           <div
             class="w-full flex gap-20 bg-athens-gray border-1 border-mischka px-2 py-3 rounded-lg cursor-pointer"
+            @click="signinWithFacebook()"
           >
             <span>
               <svg
@@ -122,6 +148,64 @@
 </template>
 
 <script lang="ts" setup>
+  import { useAuthStore } from "~/store/auth";
+
+  const authStore = useAuthStore();
+  const { validateName, validateEmail, validatePassword } = useFormValidation();
+
+  const user = {
+    firstname: "",
+    lastname: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  };
+
+  async function submit() {
+    const { firstname, lastname, email, password, confirmPassword } = user;
+    if (
+      !validateName(firstname) ||
+      !validateName(lastname) ||
+      !validateEmail(email) ||
+      !validatePassword(password) ||
+      !validatePassword(confirmPassword)
+    ) {
+      return;
+    }
+    if (password !== confirmPassword) {
+      return;
+    }
+    console.log("success");
+
+    const successful = await authStore.signup(
+      firstname,
+      lastname,
+      email,
+      password
+    );
+    console.log(successful);
+
+    if (successful) {
+      handleClick();
+    }
+  }
+
+  async function signinWithGoogle() {
+    const successful = await authStore.signinWithGoogle();
+    console.log(successful);
+    if (successful) {
+      handleClick();
+    }
+  }
+
+  async function signinWithFacebook() {
+    const successful = await authStore.signinWithFacebook();
+    console.log(successful);
+    if (successful) {
+      handleClick();
+    }
+  }
+
   const emits = defineEmits<{
     (e: "close"): void;
     (e: "swap"): void;

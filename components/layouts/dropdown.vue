@@ -1,6 +1,6 @@
 <template>
   <div
-    class="absolute bg-white w-72 py-2 shadow-custom rounded-2xl right-20 top-16"
+    class="absolute bg-white w-72 py-4 shadow-custom rounded-2xl right-20 top-16"
     v-click-outside="() => handleClickOutside()"
   >
     <div class="flex flex-col">

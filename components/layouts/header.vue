@@ -46,7 +46,7 @@
           class="rounded-4xl border-2 px-2 py-1 flex justify-between items-center cursor-pointer hover:shadow-md"
           @click="open = !open"
         >
-          <span
+          <span v-if="!authStore.loggedIn"
             ><svg
               width="33"
               height="32"
@@ -63,6 +63,9 @@
                 fill="#717171"
               />
             </svg>
+          </span>
+          <span v-else>
+            <img :src="authStore.photoUrl" class="h-8 w-8 rounded-full" />
           </span>
 
           <span>
@@ -129,7 +132,36 @@
 </template>
 
 <script lang="ts" setup>
-  const menuItems = [{ name: "Log in" }, { name: "Sign up" }, { name: "Help" }];
+  import { useAuthStore } from "~/store/auth";
+  const authStore = useAuthStore();
+
+  const menuItems = computed(() => {
+    if (authStore.loggedIn) {
+      return [
+        {
+          name: "Profile",
+        },
+        {
+          name: "Help",
+        },
+        {
+          name: "Log out",
+        },
+      ];
+    } else {
+      return [
+        {
+          name: "Log in",
+        },
+        {
+          name: "Sign up",
+        },
+        {
+          name: "Help",
+        },
+      ];
+    }
+  });
   const open = ref(false);
   defineProps({
     isSticky: {
@@ -141,12 +173,14 @@
   const openSignup = ref(false);
   const openSignin = ref(false);
 
-  function openPopups(name: string) {
+  async function openPopups(name: string) {
     open.value = false;
     if (name === "Sign up") {
       openSignup.value = true;
     } else if (name === "Log in") {
       openSignin.value = true;
+    } else if (name === "Log out") {
+      await authStore.signout();
     }
   }
 </script>
