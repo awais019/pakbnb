@@ -33,7 +33,7 @@
   </div>
   <button
     class="p-3 m-2 rounded-lg text-white font-medium gradient hover:bg-white hover:gradient-text hover:border-1 hover:border-primary"
-    @click="handleClick()"
+    @click="handleClick"
   >
     Save profile
   </button>
@@ -47,12 +47,31 @@
   const email = ref(authStore.email);
   const description = ref(authStore.description);
 
+  authStore.$onAction(({ name, args, after, onError }) => {
+    after(() => {
+      if (name === "setUser") {
+        emits("save-profile");
+      }
+    });
+  });
+
+  const emits = defineEmits<{
+    (e: "save-profile"): void;
+  }>();
+
   function handleImageUpload() {
     console.log("handleImageUpload");
   }
 
-  function handleClick() {
-    console.log("save");
+  async function handleClick() {
+    const user = {
+      objectID: authStore.id,
+      name: name.value,
+      email: email.value,
+      description: description.value,
+    };
+    await authStore.updateUser(user);
+    // emits("save-profile");
   }
 </script>
 
@@ -61,5 +80,8 @@
   textarea {
     @apply bg-white outline-none rounded-lg;
     border: 2px solid #ebebeb;
+  }
+  textarea {
+    @apply p-2;
   }
 </style>

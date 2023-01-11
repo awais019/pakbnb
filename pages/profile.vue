@@ -3,7 +3,7 @@
     <div class="w-full flex gap-2 items-center">
       <div class="w-30% flex items-center flex-col">
         <profile-card v-if="!edit" @edit-profile="edit = true" />
-        <profile-editor v-else />
+        <profile-editor v-else @save-profile="edit = false" />
       </div>
     </div>
   </div>

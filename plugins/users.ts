@@ -1,6 +1,7 @@
 import algoliasearch from "algoliasearch";
 
 import User from "~/types/user";
+import { useAuthStore } from "~/store/auth";
 
 export default defineNuxtPlugin((nuxtApp) => {
   const { result, search } = useAlgoliaSearch("Users");
@@ -42,7 +43,7 @@ export default defineNuxtPlugin((nuxtApp) => {
         "description",
       ],
     };
-    await search({ requestOptions });
+    await search({ requestOptions, refresh: true });
     if (!result.value.hits.length) {
       return null;
     }
@@ -55,5 +56,37 @@ export default defineNuxtPlugin((nuxtApp) => {
       reviewCount: result.value.hits[0].reviewCount,
       description: result.value.hits[0].description,
     };
+  });
+
+  nuxtApp.provide("updateUser", async (user: any) => {
+    const authStore = useAuthStore();
+    const requestOptions = {
+      filters: `objectID:${user.objectID}`,
+      attributesToRetrieve: [
+        "image",
+        "name",
+        "email",
+        "joined",
+        "reviewCount",
+        "description",
+      ],
+    };
+    index
+      .partialUpdateObject(user)
+      .wait()
+      .then(() => {
+        client.clearCache();
+        index.search("", requestOptions).then((res) => {
+        authStore.setUser({
+            objectID: res.hits[0].objectID,
+            name: res.hits[0].name,
+            email: res.hits[0].email,
+            image: res.hits[0].image,
+            joined: res.hits[0].joined,
+            reviewCount: res.hits[0].reviewCount,
+            description: res.hits[0].description,
+          });
+        });
+      });
   });
 });

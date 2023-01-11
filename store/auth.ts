@@ -1,6 +1,5 @@
 import {
   createUserWithEmailAndPassword,
-  updateProfile,
   signInWithEmailAndPassword,
   signInWithPopup,
   GoogleAuthProvider,
@@ -16,6 +15,9 @@ export const useAuthStore = definePiniaStore("authStore", {
     };
   },
   getters: {
+    id(state): string {
+      return state.user?.objectID as string;
+    },
     loggedIn(state): boolean {
       return state.user != null;
     },
@@ -146,6 +148,13 @@ export const useAuthStore = definePiniaStore("authStore", {
         }
       }
       return false;
+    },
+    async updateUser(user: any) {
+      const { $updateUser } = useNuxtApp();
+      await $updateUser(user);
+    },
+    setUser(user: any) {
+      this.user = user;
     },
   },
   persist: {
