@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full info py-5 px-14 flex flex-col items-center gap-6">
+  <div class="w-full wrapper py-5 px-14 flex flex-col items-center gap-6">
     <div class="w-full flex flex-col gap-3 items-center">
       <span
         ><img :src="`${authStore.imageUrl}`" class="rounded-full w-32 h-32"

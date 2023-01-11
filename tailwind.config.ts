@@ -33,6 +33,10 @@ export default <Partial<Config>>{
         "2xl": "1280px",
         "4xl": "1920px",
       },
+      width: {
+        "30%": "30%",
+        "70%": "70%",
+      },
       borderRadius: {
         "4xl": "2rem",
         "5xl": "2.5rem",

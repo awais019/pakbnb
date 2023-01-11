@@ -48,7 +48,7 @@ export const useAuthStore = definePiniaStore("authStore", {
               joined: new Date(),
               name: `${firstname} ${lastname}`,
               email: $auth.currentUser.email as string,
-              image: `https://ui-avatars.com/api/?name=${firstname}+${lastname}&background=717171&color=fff&size=32&rounded=true`,
+              image: `https://ui-avatars.com/api/?name=${firstname}+${lastname}&background=717171&color=fff&size=128&rounded=true`,
               reviewCount: 0,
               description: "",
               homeId: [],
