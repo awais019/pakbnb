@@ -1,12 +1,13 @@
 import {
   createUserWithEmailAndPassword,
-  User,
   updateProfile,
   signInWithEmailAndPassword,
   signInWithPopup,
   GoogleAuthProvider,
   FacebookAuthProvider,
 } from "firebase/auth";
+
+import User from "~/types/user";
 
 export const useAuthStore = definePiniaStore("authStore", {
   state: () => {
@@ -19,7 +20,7 @@ export const useAuthStore = definePiniaStore("authStore", {
       return state.user != null;
     },
     photoUrl(state): string {
-      return state.user?.photoURL as string;
+      return state.user?.image as string;
     },
   },
   actions: {
@@ -30,18 +31,27 @@ export const useAuthStore = definePiniaStore("authStore", {
       password: string
     ) {
       try {
-        const { $auth } = useNuxtApp();
-        createUserWithEmailAndPassword($auth, email, password).then(() => {
-          updateProfile($auth.currentUser, {
-            displayName: `${firstname} ${lastname}`,
-            photoURL: `https://ui-avatars.com/api/?name=${firstname}+${lastname}&background=717171&color=fff&size=32&rounded=true`,
-          }).then(() => {
-            this.user = $auth.currentUser;
-          });
-        });
+        const { $auth, $addUser } = useNuxtApp();
+        createUserWithEmailAndPassword($auth, email, password).then(
+          async () => {
+            const user: User = {
+              objectID: $auth.currentUser.uid,
+              joined: new Date(),
+              name: `${firstname} ${lastname}`,
+              email: $auth.currentUser.email as string,
+              image: `https://ui-avatars.com/api/?name=${firstname}+${lastname}&background=717171&color=fff&size=32&rounded=true`,
+              reviewCount: 0,
+              description: "",
+              homeId: [],
+            };
+            await $addUser(user);
+            this.user = user;
+          }
+        );
         return true;
       } catch (error: unknown) {
         if (error instanceof Error) {
+          console.log(error);
           return false;
         }
       }
@@ -53,14 +63,14 @@ export const useAuthStore = definePiniaStore("authStore", {
       this.user = null;
     },
     async signin(email: string, password: string) {
-      const { $auth } = useNuxtApp();
+      const { $auth, $getUserById } = useNuxtApp();
       try {
         const { user } = await signInWithEmailAndPassword(
           $auth,
           email,
           password
         );
-        this.user = user;
+        this.user = await $getUserById(user.uid);
         return true;
       } catch (error: unknown) {
         if (error instanceof Error) {
@@ -70,25 +80,56 @@ export const useAuthStore = definePiniaStore("authStore", {
       return false;
     },
     async signinWithGoogle() {
-      const { $auth } = useNuxtApp();
+      const { $auth, $addUser, $getUserById } = useNuxtApp();
       const provider = new GoogleAuthProvider();
       try {
         const { user } = await signInWithPopup($auth, provider);
-        this.user = user;
+
+        this.user = await $getUserById(user.uid);
+        if (!this.user) {
+          const newUser: User = {
+            objectID: user.uid,
+            joined: new Date(),
+            name: user.displayName as string,
+            email: user.email as string,
+            image: user.photoURL as string,
+            reviewCount: 0,
+            description: "",
+            homeId: [],
+          };
+          await $addUser(newUser);
+          this.user = newUser;
+        }
         return true;
       } catch (error: unknown) {
         if (error instanceof Error) {
+          console.error(error);
+
           return false;
         }
       }
       return false;
     },
     async signinWithFacebook() {
-      const { $auth } = useNuxtApp();
+      const { $auth, $getUserById, $addUser } = useNuxtApp();
       const provider = new FacebookAuthProvider();
       try {
         const { user } = await signInWithPopup($auth, provider);
-        this.user = user;
+        this.user = await $getUserById(user.uid);
+        if (!this.user) {
+          const newUser: User = {
+            objectID: user.uid,
+            joined: new Date(),
+            name: user.displayName as string,
+            email: user.email as string,
+            image: user.photoURL as string,
+            reviewCount: 0,
+            description: "",
+            homeId: [],
+          };
+          await $addUser(newUser);
+          this.user = newUser;
+        }
         return true;
       } catch (error: unknown) {
         if (error instanceof Error) {
