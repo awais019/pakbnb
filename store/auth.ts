@@ -19,8 +19,17 @@ export const useAuthStore = definePiniaStore("authStore", {
     loggedIn(state): boolean {
       return state.user != null;
     },
-    photoUrl(state): string {
+    imageUrl(state): string {
       return state.user?.image as string;
+    },
+    name(state): string {
+      return state.user?.name as string;
+    },
+    email(state): string {
+      return state.user?.email as string;
+    },
+    description(state): string {
+      return state.user?.description as string;
     },
   },
   actions: {

@@ -4,13 +4,13 @@
     v-click-outside="() => handleClickOutside()"
   >
     <div class="flex flex-col">
-      <div
-        v-for="item in menuItems"
-        :key="item.name"
-        class="nav-item"
-        @click="handleClick(item.name)"
-      >
-        {{ item.name }}
+      <div v-for="item in menuItems" :key="item.name">
+        <nuxt-link v-if="!!item.link" :to="`${item.link}`" class="nav-item block">{{
+          item.name
+        }}</nuxt-link>
+        <div v-else @click="handleClick(item.name)" class="nav-item">
+          {{ item.name }}
+        </div>
       </div>
     </div>
   </div>
@@ -20,7 +20,7 @@
   import { PropType } from "vue";
   defineProps({
     menuItems: {
-      type: Array as PropType<{ name: string }[]>,
+      type: Array as PropType<{ name: string; link: string | null }[]>,
       required: true,
     },
   });

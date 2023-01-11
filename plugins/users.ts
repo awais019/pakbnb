@@ -36,6 +36,7 @@ export default defineNuxtPlugin((nuxtApp) => {
       attributesToRetrieve: [
         "image",
         "name",
+        "email",
         "joined",
         "reviewCount",
         "description",
@@ -48,6 +49,7 @@ export default defineNuxtPlugin((nuxtApp) => {
     return {
       objectID: result.value.hits[0].objectID,
       name: result.value.hits[0].name,
+      email: result.value.hits[0].email,
       image: result.value.hits[0].image,
       joined: result.value.hits[0].joined,
       reviewCount: result.value.hits[0].reviewCount,
