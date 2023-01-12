@@ -9,7 +9,7 @@
       class="flex flex-col items-center shadow-md p-2 rounded-lg"
     >
       <home-card :home="home" />
-      <button>Delete</button>
+      <button @click="handleClick(home.objectID)">Delete</button>
     </div>
     <div
       class="w-full rounded-lg shadow-md flex flex-col cursor-pointer hover:shadow-lg items-center justify-center"
@@ -34,7 +34,7 @@
       <span>{{ text }}</span>
     </div>
   </div>
-  <profile-addhome v-if="openAddHome" @close="openAddHome = false" />
+  <profile-addhome v-if="openAddHome" @close="close" />
 </template>
 
 <script lang="ts" setup>
@@ -42,20 +42,42 @@
   import Home from "~/types/home";
 
   const authStore = useAuthStore();
-  const { $getHomeById } = useNuxtApp();
+  const { $getHomeById, $removeHome, $updateUser } = useNuxtApp();
+  const homeId = ref(authStore.homeId);
   const text = computed(() =>
-    authStore.homeId?.length ? "Add another place" : "Become a host"
+    homeId.value?.length ? "Add another place" : "Become a host"
   );
 
   const openAddHome = ref(false);
   const homes = ref<Home[]>([]);
-  onMounted(() => {
-    if (authStore.homeId?.length) {
+
+  async function handleClick(id: string) {
+    await $removeHome(id);
+    homeId.value;
+    homes.value = homes.value.filter((home) => home.objectID != id);
+    homeId.value = homeId.value.filter((hid) => hid != id);
+    await $updateUser({
+      objectID: authStore.objectID,
+      homeId: homeId.value,
+    });
+  }
+
+  function getHomes() {
+    if (homeId.value.length) {
       authStore.homeId.forEach(async (id) => {
         const home = await $getHomeById(id);
         homes.value.push(home);
       });
     }
+  }
+
+  function close() {
+    openAddHome.value = false;
+    getHomes();
+  }
+
+  onMounted(() => {
+    getHomes();
   });
 </script>
 
