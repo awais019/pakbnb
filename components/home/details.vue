@@ -4,9 +4,12 @@
       <div>
         <h1>{{ home.title }}</h1>
         <div>
-          <div>
+          <div v-if="typeof home.location == 'object'">
             {{ home.location.address }} {{ home.location.city }}
             {{ home.state }} {{ home.country }}
+          </div>
+          <div v-else>
+            {{ home.location }}
           </div>
         </div>
         <div class="flex items-center gap-2">

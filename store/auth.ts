@@ -1,6 +1,5 @@
 import {
   createUserWithEmailAndPassword,
-  updateProfile,
   signInWithEmailAndPassword,
   signInWithPopup,
   GoogleAuthProvider,
@@ -16,12 +15,30 @@ export const useAuthStore = definePiniaStore("authStore", {
     };
   },
   getters: {
+    id(state): string {
+      return state.user?.objectID as string;
+    },
     loggedIn(state): boolean {
       return state.user != null;
     },
-    photoUrl(state): string {
+    imageUrl(state): string {
       return state.user?.image as string;
     },
+    name(state): string {
+      return state.user?.name as string;
+    },
+    email(state): string {
+      return state.user?.email as string;
+    },
+    description(state): string {
+      return state.user?.description as string;
+    },
+    homeId(state): string[] {
+      return state.user?.homeId as string[];
+    },
+    objectID(state): string {
+      return state.user?.objectID as string;
+    }
   },
   actions: {
     async signup(
@@ -39,7 +56,7 @@ export const useAuthStore = definePiniaStore("authStore", {
               joined: new Date(),
               name: `${firstname} ${lastname}`,
               email: $auth.currentUser.email as string,
-              image: `https://ui-avatars.com/api/?name=${firstname}+${lastname}&background=717171&color=fff&size=32&rounded=true`,
+              image: `https://ui-avatars.com/api/?name=${firstname}+${lastname}&background=717171&color=fff&size=128&rounded=true`,
               reviewCount: 0,
               description: "",
               homeId: [],
@@ -137,6 +154,13 @@ export const useAuthStore = definePiniaStore("authStore", {
         }
       }
       return false;
+    },
+    async updateUser(user: any) {
+      const { $updateUser } = useNuxtApp();
+      await $updateUser(user);
+    },
+    setUser(user: any) {
+      this.user = user;
     },
   },
   persist: {

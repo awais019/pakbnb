@@ -65,7 +65,7 @@
             </svg>
           </span>
           <span v-else>
-            <img :src="authStore.photoUrl" class="h-8 w-8 rounded-full" />
+            <img :src="authStore.imageUrl" class="h-8 w-8 rounded-full" />
           </span>
 
           <span>
@@ -140,24 +140,30 @@
       return [
         {
           name: "Profile",
+          link: "/profile",
         },
         {
           name: "Help",
+          link: null,
         },
         {
           name: "Log out",
+          link: null,
         },
       ];
     } else {
       return [
         {
           name: "Log in",
+          link: null,
         },
         {
           name: "Sign up",
+          link: null,
         },
         {
           name: "Help",
+          link: null,
         },
       ];
     }
