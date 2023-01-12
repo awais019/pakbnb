@@ -20,6 +20,7 @@
             query = suggestion.place_name;
             isFocused = false;
             location = { lat: suggestion.center[1], lng: suggestion.center[0] };
+            handleClick(suggestion.place_name, location);
           }
         "
       >
@@ -30,6 +31,7 @@
 </template>
 
 <script setup lang="ts">
+  import { emit } from "process";
   import Places from "~~/types/places";
   const runtimeConfig = useRuntimeConfig();
   const access_token = runtimeConfig.public.mapbox.accessToken as string;
@@ -43,6 +45,14 @@
   const suggestions = ref<Places>();
 
   const isFocused = ref(false);
+
+  const emits = defineEmits<{
+    (e: "locationSelected", place_name: string, location: any): void;
+  }>();
+
+  function handleClick(place_name: string, location: any) {
+    emits("locationSelected", place_name, location);
+  }
 
   watch(query, async () => {
     const url = `https://api.mapbox.com/geocoding/v5/${endpoint}/${query.value}.json?access_token=${access_token}`;

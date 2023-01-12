@@ -7,15 +7,15 @@
       <div
         v-if="showDatePicker"
         v-click-outside="() => (showDatePicker = false)"
-        class="absolute top-11 right-0 left-0"
+        class="absolute top-11 right-0 left-0 z-20"
       >
         <DatePicker
           is-range
           v-model="range"
           color="yellow"
-          :columns="1"
+          timezone="UTC"
+          :modelConfig="{ timeAdjust: '00:00:00' }"
           :min-date="new Date()"
-          is-expanded
           @input="showDatePicker = false"
         />
       </div>
@@ -24,8 +24,8 @@
 </template>
 
 <script lang="ts" setup>
-  import { e } from "unimport/dist/types-e4738ae5";
-import { DatePicker } from "v-calendar";
+  import { emit } from "process";
+  import { DatePicker } from "v-calendar";
   import "v-calendar/dist/style.css";
 
   const showDatePicker = ref(false);
@@ -56,7 +56,21 @@ import { DatePicker } from "v-calendar";
     } else return "";
   }
 
+  const availability: string[] = [];
+  const emits = defineEmits<{
+    (e: "rangeSelected", availability: string[]): void;
+  }>();
+
   watch(range, (newRange) => {
+    const start = Math.floor(new Date(newRange.start).getTime() / 1000);
+    const end = Math.floor(new Date(newRange.end).getTime() / 1000);
+    console.log(start, end);
+
+    for (let day = start; day <= end; day += 86400) {
+      availability.push(day.toString());
+    }
+    emits("rangeSelected", availability);
+
     showDatePicker.value = false;
   });
 </script>

@@ -3,7 +3,10 @@
     class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-25"
     @click="handleClick"
   >
-    <div class="bg-white max-w-4xl w-full p-20 mx-20 rounded-2xl">
+    <div
+      class="bg-white max-w-4xl w-full p-20 mx-20 rounded-2xl"
+      @click="(e) => e.stopPropagation()"
+    >
       <h2>Add a place for others</h2>
       <form @submit.prevent="submit" class="relative flex gap-6 justify-evenly">
         <div>
@@ -16,11 +19,11 @@
         </div>
         <div>
           Title: <br />
-          <input type="text" class="w-80" />
+          <input type="text" class="w-80" v-model="home.title" />
           Description: <br />
-          <textarea class="w-80" />
+          <textarea class="w-80" v-model="home.description" />
           Note: <br />
-          <textarea class="w-80" />
+          <textarea class="w-80" v-model="home.note" />
         </div>
         <div>
           Features: <br />
@@ -28,22 +31,54 @@
             type="text"
             placeholder="Press enter after adding a feature"
             class="w-80"
+            v-model="feature"
+            @keydown="
+              (e) => {
+                if (e.key === 'Enter') pushFeature();
+              }
+            "
           />
+          <div>
+            <span
+              v-for="(feature, index) in home.features"
+              :key="index"
+              class="bg-slate-100 px-2 py-1 rounded-lg mr-1"
+              >{{ feature }}</span
+            >
+          </div>
           Price Per Night <br />
-          <input type="number" class="w-80" min="1" />
+          <input
+            type="number"
+            class="w-80"
+            min="1"
+            v-model="home.pricePerNight"
+          />
           Guests/ Rooms / Beds / Baths <br />
           <div class="flex gap-1">
-            <input type="number" class="w-20" min="1" />
-            <input type="number" class="w-20" min="1" />
-            <input type="number" class="w-20" min="1" />
-            <input type="number" class="w-20" min="1" />
+            <input type="number" class="w-20" min="1" v-model="home.guests" />
+            <input type="number" class="w-20" min="1" v-model="home.rooms" />
+            <input type="number" class="w-20" min="1" v-model="home.beds" />
+            <input type="number" class="w-20" min="1" v-model="home.baths" />
           </div>
         </div>
         <div>
           Enter a location:
-          <profile-locationselector />
+          <profile-locationselector
+            @location-selected="
+              (place_name, location) => {
+                home.location = place_name;
+                home._geoloc = location;
+              }
+            "
+          />
           Avaibility Range:
-          <profile-datepicker />
+          <profile-datepicker
+            @range-selected="
+              (availability) => {
+                home.availability = availability;
+              }
+            "
+          />
         </div>
         <input type="submit" value="Add" />
       </form>
@@ -52,13 +87,43 @@
 </template>
 
 <script lang="ts" setup>
+  const home = reactive({
+    images: [] as string[],
+    title: "",
+    description: "",
+    note: "",
+    features: [] as string[],
+    pricePerNight: 0,
+    guests: 0,
+    rooms: 0,
+    beds: 0,
+    baths: 0,
+    location: "",
+    _geoloc: {
+      lat: 0,
+      lng: 0,
+    },
+    availability: [] as string[],
+  });
+
+  const feature = ref("");
+
+  function pushFeature() {
+    if (feature.value === " ") feature.value = "";
+    feature.value.replace(/\s+/g, "");
+    home.features.push(feature.value);
+    feature.value = "";
+  }
+
   function submit() {
-    console.log("submit");
+    console.log(home);
   }
   const emits = defineEmits<{
     (e: "close"): void;
   }>();
   function handleClick() {
+    console.log("click");
+
     emits("close");
   }
 </script>
