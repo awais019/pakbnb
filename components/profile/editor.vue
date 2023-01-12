@@ -4,7 +4,7 @@
       <div class="w-full flex flex-col gap-3 items-center">
         <label for="image">
           <span
-            ><img :src="`${authStore.imageUrl}`" class="rounded-full w-32 h-32"
+            ><img :src="`${imageUrl}`" class="rounded-full w-32 h-32"
           /></span>
           <input
             v-show="false"
@@ -41,11 +41,14 @@
 
 <script lang="ts" setup>
   import { useAuthStore } from "~/store/auth";
+
   const authStore = useAuthStore();
+  const { $uploadImage } = useNuxtApp();
 
   const name = ref(authStore.name);
   const email = ref(authStore.email);
   const description = ref(authStore.description);
+  const imageUrl = ref(authStore.imageUrl);
 
   authStore.$onAction(({ name, args, after, onError }) => {
     after(() => {
@@ -59,8 +62,12 @@
     (e: "save-profile"): void;
   }>();
 
-  function handleImageUpload() {
-    console.log("handleImageUpload");
+  async function handleImageUpload(e: Event) {
+    const file = (e.target as HTMLInputElement).files?.[0];
+    if (!file) return;
+    $uploadImage("users/", file).then((url: string) => {
+      imageUrl.value = url;
+    });
   }
 
   async function handleClick() {
@@ -69,9 +76,9 @@
       name: name.value,
       email: email.value,
       description: description.value,
+      image: imageUrl.value,
     };
     await authStore.updateUser(user);
-    // emits("save-profile");
   }
 </script>
 

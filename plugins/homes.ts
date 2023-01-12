@@ -40,4 +40,8 @@ export default defineNuxtPlugin((nuxtApp) => {
     index.saveObject({ ...home, objectID: ++id });
     return id;
   });
+  nuxtApp.provide(
+    "removeHome",
+    async (id: string) => await index.deleteObject(id)
+  );
 });
