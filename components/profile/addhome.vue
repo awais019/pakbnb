@@ -100,6 +100,8 @@
     bedrooms: 0,
     beds: 0,
     bathrooms: 0,
+    reviewValue: 0,
+    reviewCount: 0,
     location: "",
     _geoloc: {
       lat: 0,
