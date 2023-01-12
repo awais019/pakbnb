@@ -2,7 +2,7 @@
   <div class="my-10">
     <div class="flex items-center gap-10">
       <div class="py-10">
-        <img :src="host.image" class="rounded-full" />
+        <img :src="host.image" class="rounded-full w-24 h-24" />
       </div>
       <div>
         <h2>Hosted by {{ host.name }}</h2>
