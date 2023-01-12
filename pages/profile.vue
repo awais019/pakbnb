@@ -1,10 +1,11 @@
 <template>
   <div class="w-full mt-20">
-    <div class="w-full flex gap-2 items-center">
+    <div class="w-full flex gap-2">
       <div class="w-30% flex items-center flex-col">
         <profile-card v-if="!edit" @edit-profile="edit = true" />
         <profile-editor v-else @save-profile="edit = false" />
       </div>
+      <profile-homes />
     </div>
   </div>
 </template>
