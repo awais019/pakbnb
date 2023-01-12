@@ -6,8 +6,8 @@
     <div
       class="flex justify-between h-full items-center font-bold text-2xl gradient-text cursor-pointer"
     >
-      <nuxt-link to="/">
-        <!-- <img src="~/assets/images/logo.svg" alt="" class="w-8 h-8" /> -->
+      <nuxt-link to="/" class="flex items-center">
+        <img src="~/assets/images/logo.png" alt="" />
         <span>pakbnb</span>
       </nuxt-link>
     </div>

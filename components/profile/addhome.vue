@@ -58,7 +58,12 @@
             <input type="number" class="w-20" min="1" v-model="home.guests" />
             <input type="number" class="w-20" min="1" v-model="home.bedrooms" />
             <input type="number" class="w-20" min="1" v-model="home.beds" />
-            <input type="number" class="w-20" min="1" v-model="home.bathrooms" />
+            <input
+              type="number"
+              class="w-20"
+              min="1"
+              v-model="home.bathrooms"
+            />
           </div>
         </div>
         <div>
@@ -134,7 +139,7 @@
     const id = await $addHome(home);
     let homeId = authStore.homeId;
     homeId.push(id);
-    homeId = [ ...new Set(homeId)]
+    homeId = [...new Set(homeId)];
     authStore.updateUser({
       objectID: authStore.objectID,
       homeId,
@@ -155,6 +160,6 @@
     @apply block outline-none mb-2 bg-transparent border-1 border-gray-300  rounded-md p-2;
   }
   input[type="submit"] {
-    @apply absolute bottom-0 right-0 gradient text-white font-medium px-6 py-2 cursor-pointer hover:border-1 hover:border-primary;
+    @apply absolute bottom-0 right-0 bg-primary text-white font-medium px-6 py-2 cursor-pointer hover:border-1 hover:border-primary;
   }
 </style>
