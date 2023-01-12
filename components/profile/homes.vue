@@ -1,9 +1,18 @@
 <template>
   <div
-    class="w-70% min-h-80vh wrapper grid grid-cols-3 grid-rows-2 p-3 overflow-auto"
+    class="w-70% min-h-80vh wrapper grid grid-cols-3 grid-rows-2 gap-x-2 p-3 overflow-auto"
   >
     <div
-      class="w-full rounded-3xl shadow-md flex flex-col cursor-pointer hover:shadow-lg items-center justify-center"
+      v-if="homes.length"
+      v-for="home in homes"
+      :key="home.objectID"
+      class="flex flex-col items-center shadow-md p-2 rounded-lg"
+    >
+      <home-card :home="home" />
+      <button>Delete</button>
+    </div>
+    <div
+      class="w-full rounded-lg shadow-md flex flex-col cursor-pointer hover:shadow-lg items-center justify-center"
       @click="openAddHome = true"
     >
       <span>
@@ -30,13 +39,28 @@
 
 <script lang="ts" setup>
   import { useAuthStore } from "~/store/auth";
-  const authStore = useAuthStore();
+  import Home from "~/types/home";
 
+  const authStore = useAuthStore();
+  const { $getHomeById } = useNuxtApp();
   const text = computed(() =>
     authStore.homeId?.length ? "Add another place" : "Become a host"
   );
 
   const openAddHome = ref(false);
+  const homes = ref<Home[]>([]);
+  onMounted(() => {
+    if (authStore.homeId?.length) {
+      authStore.homeId.forEach(async (id) => {
+        const home = await $getHomeById(id);
+        homes.value.push(home);
+      });
+    }
+  });
 </script>
 
-<style lang="postcss" scoped></style>
+<style lang="postcss" scoped>
+  button {
+    @apply gradient p-3 rounded-lg outline-none text-white font-medium;
+  }
+</style>
