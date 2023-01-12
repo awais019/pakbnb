@@ -1,5 +1,14 @@
+import algoliasearch from "algoliasearch";
+
 export default defineNuxtPlugin((nuxtApp) => {
   const { result, search } = useAlgoliaSearch("Homes");
+  let id = 0;
+  const client = algoliasearch(
+    "EPY4Z8GR7F",
+    "adaa4dc231574144262554442d5a338d"
+  );
+  const index = client.initIndex("Homes");
+
   nuxtApp.provide("getHomes", async () => {
     await search({});
     return result.value.hits;
@@ -27,4 +36,8 @@ export default defineNuxtPlugin((nuxtApp) => {
       return { data: result.value.hits, nbPages: result.value.nbPages };
     }
   );
+  nuxtApp.provide("addHome", (home: any) => {
+    index.saveObject({ ...home, objectID: ++id });
+    return id;
+  });
 });

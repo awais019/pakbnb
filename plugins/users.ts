@@ -39,6 +39,7 @@ export default defineNuxtPlugin((nuxtApp) => {
         "name",
         "email",
         "joined",
+        "homeId",
         "reviewCount",
         "description",
       ],
@@ -53,6 +54,7 @@ export default defineNuxtPlugin((nuxtApp) => {
       email: result.value.hits[0].email,
       image: result.value.hits[0].image,
       joined: result.value.hits[0].joined,
+      homeId: result.value.hits[0].homeId,
       reviewCount: result.value.hits[0].reviewCount,
       description: result.value.hits[0].description,
     };
@@ -67,6 +69,7 @@ export default defineNuxtPlugin((nuxtApp) => {
         "name",
         "email",
         "joined",
+        "homeId",
         "reviewCount",
         "description",
       ],
@@ -77,12 +80,13 @@ export default defineNuxtPlugin((nuxtApp) => {
       .then(() => {
         client.clearCache();
         index.search("", requestOptions).then((res) => {
-        authStore.setUser({
+          authStore.setUser({
             objectID: res.hits[0].objectID,
             name: res.hits[0].name,
             email: res.hits[0].email,
             image: res.hits[0].image,
             joined: res.hits[0].joined,
+            homeId: res.hits[0].homeId,
             reviewCount: res.hits[0].reviewCount,
             description: res.hits[0].description,
           });

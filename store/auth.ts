@@ -33,6 +33,12 @@ export const useAuthStore = definePiniaStore("authStore", {
     description(state): string {
       return state.user?.description as string;
     },
+    homeId(state): string[] {
+      return state.user?.homeId as string[];
+    },
+    objectID(state): string {
+      return state.user?.objectID as string;
+    }
   },
   actions: {
     async signup(

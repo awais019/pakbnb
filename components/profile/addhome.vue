@@ -11,19 +11,19 @@
       <form @submit.prevent="submit" class="relative flex gap-6 justify-evenly">
         <div>
           Images: <br />
-          <input type="file" accept="image/*" />
-          <input type="file" accept="image/*" />
-          <input type="file" accept="image/*" />
-          <input type="file" accept="image/*" />
-          <input type="file" accept="image/*" />
+          <input type="file" accept="image/*" @change="uploadImage" required />
+          <input type="file" accept="image/*" @change="uploadImage" required />
+          <input type="file" accept="image/*" @change="uploadImage" required />
+          <input type="file" accept="image/*" @change="uploadImage" />
+          <input type="file" accept="image/*" @change="uploadImage" required />
         </div>
         <div>
           Title: <br />
-          <input type="text" class="w-80" v-model="home.title" />
+          <input type="text" class="w-80" v-model="home.title" required />
           Description: <br />
-          <textarea class="w-80" v-model="home.description" />
+          <textarea class="w-80" v-model="home.description" required />
           Note: <br />
-          <textarea class="w-80" v-model="home.note" />
+          <textarea class="w-80" v-model="home.note" required />
         </div>
         <div>
           Features: <br />
@@ -56,9 +56,9 @@
           Guests/ Rooms / Beds / Baths <br />
           <div class="flex gap-1">
             <input type="number" class="w-20" min="1" v-model="home.guests" />
-            <input type="number" class="w-20" min="1" v-model="home.rooms" />
+            <input type="number" class="w-20" min="1" v-model="home.bedrooms" />
             <input type="number" class="w-20" min="1" v-model="home.beds" />
-            <input type="number" class="w-20" min="1" v-model="home.baths" />
+            <input type="number" class="w-20" min="1" v-model="home.bathrooms" />
           </div>
         </div>
         <div>
@@ -87,6 +87,8 @@
 </template>
 
 <script lang="ts" setup>
+  import { useAuthStore } from "~/store/auth";
+
   const home = reactive({
     images: [] as string[],
     title: "",
@@ -95,9 +97,9 @@
     features: [] as string[],
     pricePerNight: 0,
     guests: 0,
-    rooms: 0,
+    bedrooms: 0,
     beds: 0,
-    baths: 0,
+    bathrooms: 0,
     location: "",
     _geoloc: {
       lat: 0,
@@ -108,6 +110,17 @@
 
   const feature = ref("");
 
+  const { $uploadImage, $addHome } = useNuxtApp();
+  const authStore = useAuthStore();
+
+  async function uploadImage(e: Event) {
+    const file = (e.target as HTMLInputElement).files?.[0];
+    if (!file) return;
+    $uploadImage("homes/", file).then((url: string) => {
+      home.images.push(url);
+    });
+  }
+
   function pushFeature() {
     if (feature.value === " ") feature.value = "";
     feature.value.replace(/\s+/g, "");
@@ -115,15 +128,22 @@
     feature.value = "";
   }
 
-  function submit() {
+  async function submit() {
     console.log(home);
+    const id = await $addHome(home);
+    let homeId = authStore.homeId;
+    homeId.push(id);
+    homeId = [ ...new Set(homeId)]
+    authStore.updateUser({
+      objectID: authStore.objectID,
+      homeId,
+    });
+    emits("close");
   }
   const emits = defineEmits<{
     (e: "close"): void;
   }>();
   function handleClick() {
-    console.log("click");
-
     emits("close");
   }
 </script>
