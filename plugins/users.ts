@@ -28,7 +28,6 @@ export default defineNuxtPlugin((nuxtApp) => {
   const index = client.initIndex("Users");
   nuxtApp.provide("addUser", async (user: User) => {
     await index.saveObject(user);
-    console.log(user);
   });
 
   nuxtApp.provide("getUserById", async (id: string) => {

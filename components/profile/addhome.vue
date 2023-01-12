@@ -131,7 +131,6 @@
   }
 
   async function submit() {
-    console.log(home);
     const id = await $addHome(home);
     let homeId = authStore.homeId;
     homeId.push(id);

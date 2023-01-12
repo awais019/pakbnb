@@ -83,6 +83,6 @@
 
 <style lang="postcss" scoped>
   button {
-    @apply gradient p-3 rounded-lg outline-none text-white font-medium;
+    @apply p-3 rounded-lg bg-primary outline-none text-white font-medium;
   }
 </style>

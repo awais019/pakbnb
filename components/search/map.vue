@@ -92,10 +92,6 @@
     updatePopup(marker);
   }
 
-  watch(props.homes, (val, newVal) => {
-    console.log(val, newVal);
-  });
-
   onUpdated(() => {
     markers.forEach((marker) => marker.remove());
     map.setZoom(12);

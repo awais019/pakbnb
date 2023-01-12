@@ -68,7 +68,6 @@ export const useAuthStore = definePiniaStore("authStore", {
         return true;
       } catch (error: unknown) {
         if (error instanceof Error) {
-          console.log(error);
           return false;
         }
       }

@@ -175,7 +175,6 @@
     if (password !== confirmPassword) {
       return;
     }
-    console.log("success");
 
     const successful = await authStore.signup(
       firstname,
@@ -183,7 +182,6 @@
       email,
       password
     );
-    console.log(successful);
 
     if (successful) {
       handleClick();
@@ -192,7 +190,6 @@
 
   async function signinWithGoogle() {
     const successful = await authStore.signinWithGoogle();
-    console.log(successful);
     if (successful) {
       handleClick();
     }
@@ -200,7 +197,6 @@
 
   async function signinWithFacebook() {
     const successful = await authStore.signinWithFacebook();
-    console.log(successful);
     if (successful) {
       handleClick();
     }

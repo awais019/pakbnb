@@ -64,7 +64,6 @@
   watch(range, (newRange) => {
     const start = Math.floor(new Date(newRange.start).getTime() / 1000);
     const end = Math.floor(new Date(newRange.end).getTime() / 1000);
-    console.log(start, end);
 
     for (let day = start; day <= end; day += 86400) {
       availability.push(day.toString());

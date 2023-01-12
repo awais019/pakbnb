@@ -139,7 +139,6 @@
   async function submit() {
     if (validateEmail(email.value) && validatePassword(password.value)) {
       const successful = await authStore.signin(email.value, password.value);
-      console.log(successful);
       if (successful) {
         handleClick();
       }
@@ -148,7 +147,6 @@
 
   async function signinWithGoogle() {
     const successful = await authStore.signinWithGoogle();
-    console.log(successful);
     if (successful) {
       handleClick();
     }
@@ -156,7 +154,6 @@
 
   async function signinWithFacebook() {
     const successful = await authStore.signinWithFacebook();
-    console.log(successful);
     if (successful) {
       handleClick();
     }
