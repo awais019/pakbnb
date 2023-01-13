@@ -29,7 +29,10 @@
     >
       <div>${{ home.pricePerNight }}<span> / night</span></div>
       <DatePicker />
-      <button class="w-full gradient text-white rounded-lg h-10">
+      <button
+        class="w-full gradient text-white rounded-lg h-10"
+        @click="handleClick"
+      >
         Request to book!
       </button>
     </div>
@@ -43,6 +46,16 @@
       required: true,
     },
   });
+  async function handleClick() {
+    const res = await $fetch("/api/checkout", {
+      method: "POST",
+      body: {
+        nights: 3,
+      },
+    });
+
+    window.location.assign(res.url as string);
+  }
 </script>
 
 <style lang="postcss" scoped></style>

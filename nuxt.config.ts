@@ -31,6 +31,7 @@ export default defineNuxtConfig({
     "~/plugins/firebase.client.ts",
   ],
   runtimeConfig: {
+    stripeSecret: process.env.STRIPE_SECRET,
     public: {
       mapbox: {
         accessToken: process.env.MAPBOX_ACCESS_TOKEN,
