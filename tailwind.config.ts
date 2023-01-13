@@ -63,6 +63,7 @@ export default <Partial<Config>>{
       },
       gridTemplateColumns: {
         "2": "1fr 5fr",
+        "2x": "1fr 1fr",
       },
     },
   },

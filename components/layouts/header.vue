@@ -16,15 +16,15 @@
         <nuxt-link to="/">Home</nuxt-link></span
       >
       <span class="nav-item border-r-2">
-        <nuxt-link to="">About</nuxt-link></span
+        <nuxt-link to="/about">About</nuxt-link></span
       >
       <span class="nav-item">
-        <nuxt-link to="">Contact</nuxt-link>
+        <nuxt-link to="/contact">Contact</nuxt-link>
       </span>
     </nav>
 
     <div class="h-full flex items-center">
-      <button class="w-1/2 mr-2 flex justify-center items-center">
+      <!-- <button class="w-1/2 mr-2 flex justify-center items-center">
         <span class="p-3.5 rounded-full hover:bg-neutral-100 flex items-center">
           <svg
             width="16"
@@ -40,7 +40,7 @@
           </svg>
           <span class="px-2">Language</span>
         </span>
-      </button>
+      </button> -->
       <div class="h-12 w-20">
         <div
           class="rounded-4xl border-2 px-2 py-1 flex justify-between items-center cursor-pointer hover:shadow-md"
