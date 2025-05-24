@@ -13,7 +13,7 @@
 </template>
 
 <script lang="ts" setup>
-  import Home from "~/types/home";
+  import type Home from "~/types/home";
 
   definePageMeta({
     layout: "home",

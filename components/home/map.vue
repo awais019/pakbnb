@@ -9,7 +9,7 @@
 
 <script lang="ts" setup>
   import "mapbox-gl/dist/mapbox-gl.css";
-  import mapboxgl, { LngLatLike, Map } from "mapbox-gl";
+  import mapboxgl, { type LngLatLike, type Map } from "mapbox-gl";
 
   const props = defineProps({
     latlng: {

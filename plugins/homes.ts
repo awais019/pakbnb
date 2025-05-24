@@ -10,15 +10,16 @@ export default defineNuxtPlugin((nuxtApp) => {
   const index = client.initIndex("Homes");
 
   nuxtApp.provide("getHomes", async () => {
-    await search({});
+    await search({ query: "" });
     return result.value.hits;
   });
 
   nuxtApp.provide("getHomeById", async (id: string) => {
     const requestOptions = {
       filters: `objectID:${id}`,
+      query: "",
     };
-    await search({ requestOptions });
+    await search(requestOptions);
 
     return result.value.hits[0];
   });
@@ -31,8 +32,9 @@ export default defineNuxtPlugin((nuxtApp) => {
         page,
         aroundLatLng: `${latlng.lat}, ${latlng.lng}`,
         aroundRadius: 20000,
+        query: "",
       };
-      await search({ requestOptions });
+      await search(requestOptions);
       return { data: result.value.hits, nbPages: result.value.nbPages };
     }
   );

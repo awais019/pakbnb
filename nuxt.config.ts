@@ -1,13 +1,8 @@
+import tailwindcss from "@tailwindcss/vite";
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   modules: [
-    [
-      "@nuxtjs/tailwindcss",
-      {
-        jit: true,
-        cssPath: "~/assets/css/tailwind.css",
-      },
-    ],
     [
       "@nuxtjs/algolia",
       {
@@ -15,8 +10,17 @@ export default defineNuxtConfig({
         apiKey: process.env.ALGOLIA_API_KEY,
       },
     ],
-    "pinia-plugin-persistedstate/nuxt",
-    "@pinia/nuxt",
+    [
+      "@pinia/nuxt",
+      {
+        autoImports: [
+          "defineStore",
+          "acceptHMRUpdate",
+          "storeToRefs",
+          "useState",
+        ],
+      },
+    ],
   ],
   plugins: [
     "~/plugins/clickOutside.ts",
@@ -25,6 +29,7 @@ export default defineNuxtConfig({
     "~/plugins/users.ts",
     "~/plugins/firebase.client.ts",
   ],
+  css: ["~/assets/css/main.css"],
   runtimeConfig: {
     stripeSecret: process.env.STRIPE_SECRET,
     public: {
@@ -41,4 +46,5 @@ export default defineNuxtConfig({
       },
     },
   },
+  vite: { plugins: [tailwindcss()] },
 });

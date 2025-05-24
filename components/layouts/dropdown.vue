@@ -5,9 +5,12 @@
   >
     <div class="flex flex-col">
       <div v-for="item in menuItems" :key="item.name">
-        <nuxt-link v-if="!!item.link" :to="`${item.link}`" class="nav-item block">{{
-          item.name
-        }}</nuxt-link>
+        <nuxt-link
+          v-if="!!item.link"
+          :to="`${item.link}`"
+          class="nav-item block"
+          >{{ item.name }}</nuxt-link
+        >
         <div v-else @click="handleClick(item.name)" class="nav-item">
           {{ item.name }}
         </div>
@@ -17,7 +20,7 @@
 </template>
 
 <script lang="ts" setup>
-  import { PropType } from "vue";
+  import type { PropType } from "vue";
   defineProps({
     menuItems: {
       type: Array as PropType<{ name: string; link: string | null }[]>,

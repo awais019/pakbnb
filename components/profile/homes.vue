@@ -39,7 +39,7 @@
 
 <script lang="ts" setup>
   import { useAuthStore } from "~/store/auth";
-  import Home from "~/types/home";
+  import type Home from "~/types/home";
 
   const authStore = useAuthStore();
   const { $getHomeById, $removeHome, $updateUser } = useNuxtApp();

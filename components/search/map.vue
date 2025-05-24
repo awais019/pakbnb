@@ -8,7 +8,7 @@
 </template>
 
 <script lang="ts" setup>
-  import { PropType } from "vue";
+  import type { PropType } from "vue";
   import "mapbox-gl/dist/mapbox-gl.css";
   import mapboxgl, { LngLatLike, Map, Marker, Popup } from "mapbox-gl";
 

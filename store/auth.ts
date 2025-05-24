@@ -5,10 +5,9 @@ import {
   GoogleAuthProvider,
   FacebookAuthProvider,
 } from "firebase/auth";
+import type User from "~/types/user";
 
-import User from "~/types/user";
-
-export const useAuthStore = definePiniaStore("authStore", {
+export const useAuthStore = defineStore("authStore", {
   state: () => {
     return {
       user: null as User | null,
@@ -38,7 +37,7 @@ export const useAuthStore = definePiniaStore("authStore", {
     },
     objectID(state): string {
       return state.user?.objectID as string;
-    }
+    },
   },
   actions: {
     async signup(
@@ -161,9 +160,6 @@ export const useAuthStore = definePiniaStore("authStore", {
     setUser(user: any) {
       this.user = user;
     },
-  },
-  persist: {
-    storage: persistedState.localStorage,
   },
 });
 

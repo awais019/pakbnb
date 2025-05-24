@@ -43,7 +43,7 @@
 </template>
 
 <script lang="ts" setup>
-  import Places from "~/types/places";
+  import type Places from "~/types/places";
 
   const runtimeConfig = useRuntimeConfig();
   const access_token = runtimeConfig.public.mapbox.accessToken as string;

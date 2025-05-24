@@ -1,6 +1,6 @@
 import algoliasearch from "algoliasearch";
 
-import User from "~/types/user";
+import type User from "~/types/user";
 import { useAuthStore } from "~/store/auth";
 
 export default defineNuxtPlugin((nuxtApp) => {
@@ -16,8 +16,9 @@ export default defineNuxtPlugin((nuxtApp) => {
         "reviewCount",
         "description",
       ],
+      query: "",
     };
-    await search({ requestOptions });
+    await search(requestOptions);
     return result.value.hits[0];
   });
 
@@ -42,8 +43,10 @@ export default defineNuxtPlugin((nuxtApp) => {
         "reviewCount",
         "description",
       ],
+      query: "",
+      refresh: true,
     };
-    await search({ requestOptions, refresh: true });
+    await search(requestOptions);
     if (!result.value.hits.length) {
       return null;
     }

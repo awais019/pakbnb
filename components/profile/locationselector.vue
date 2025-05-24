@@ -31,8 +31,7 @@
 </template>
 
 <script setup lang="ts">
-  import { emit } from "process";
-  import Places from "~~/types/places";
+  import type Places from "~~/types/places";
   const runtimeConfig = useRuntimeConfig();
   const access_token = runtimeConfig.public.mapbox.accessToken as string;
   const endpoint = "mapbox.places";

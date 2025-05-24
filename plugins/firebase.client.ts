@@ -3,7 +3,7 @@ import { getAuth } from "firebase/auth";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 export default defineNuxtPlugin((nuxtApp) => {
-  const runtimeConfig = useRuntimeConfig();
+  const runtimeConfig = useRuntimeConfig().public;
 
   const firebaseConfig = {
     apiKey: runtimeConfig.firebase.apiKey,
