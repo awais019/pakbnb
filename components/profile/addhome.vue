@@ -157,7 +157,7 @@
 <style lang="postcss" scoped>
   input,
   textarea {
-    @apply block outline-none mb-2 bg-transparent border-1 border-gray-300  rounded-md p-2;
+    @apply block outline-hidden mb-2 bg-transparent border-1 border-gray-300  rounded-md p-2;
   }
   input[type="submit"] {
     @apply absolute bottom-0 right-0 bg-primary text-white font-medium px-6 py-2 cursor-pointer hover:border-1 hover:border-primary;

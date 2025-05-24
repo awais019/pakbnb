@@ -70,7 +70,7 @@
                 name="first-name"
                 id="first-name"
                 autocomplete="given-name"
-                class="block w-full rounded-md border-warm-gray-300 py-3 px-4 text-warm-gray-900 shadow-sm focus:border-teal-500 focus:ring-teal-500"
+                class="block w-full rounded-md border-warm-gray-300 py-3 px-4 text-warm-gray-900 shadow-xs focus:border-teal-500 focus:ring-teal-500"
               />
             </div>
           </div>
@@ -86,7 +86,7 @@
                 name="last-name"
                 id="last-name"
                 autocomplete="family-name"
-                class="block w-full rounded-md py-3 px-4 text-warm-gray-900 shadow-sm focus:border-teal-500 focus:ring-teal-500"
+                class="block w-full rounded-md py-3 px-4 text-warm-gray-900 shadow-xs focus:border-teal-500 focus:ring-teal-500"
               />
             </div>
           </div>
@@ -102,7 +102,7 @@
                 name="email"
                 type="email"
                 autocomplete="email"
-                class="block w-full rounded-md border-warm-gray-300 py-3 px-4 text-warm-gray-900 shadow-sm focus:border-teal-500 focus:ring-teal-500"
+                class="block w-full rounded-md border-warm-gray-300 py-3 px-4 text-warm-gray-900 shadow-xs focus:border-teal-500 focus:ring-teal-500"
               />
             </div>
           </div>
@@ -123,7 +123,7 @@
                 name="phone"
                 id="phone"
                 autocomplete="tel"
-                class="block w-full rounded-md border-warm-gray-300 py-3 px-4 text-warm-gray-900 shadow-sm focus:border-teal-500 focus:ring-teal-500"
+                class="block w-full rounded-md border-warm-gray-300 py-3 px-4 text-warm-gray-900 shadow-xs focus:border-teal-500 focus:ring-teal-500"
                 aria-describedby="phone-optional"
               />
             </div>
@@ -139,7 +139,7 @@
                 type="text"
                 name="subject"
                 id="subject"
-                class="block w-full rounded-md border-warm-gray-300 py-3 px-4 text-warm-gray-900 shadow-sm focus:border-teal-500 focus:ring-teal-500"
+                class="block w-full rounded-md border-warm-gray-300 py-3 px-4 text-warm-gray-900 shadow-xs focus:border-teal-500 focus:ring-teal-500"
               />
             </div>
           </div>
@@ -159,7 +159,7 @@
                 id="message"
                 name="message"
                 rows="4"
-                class="block w-full rounded-md border-warm-gray-300 py-3 px-4 text-warm-gray-900 shadow-sm focus:border-teal-500 focus:ring-teal-500"
+                class="block w-full rounded-md border-warm-gray-300 py-3 px-4 text-warm-gray-900 shadow-xs focus:border-teal-500 focus:ring-teal-500"
                 aria-describedby="message-max"
               />
             </div>
@@ -167,7 +167,7 @@
           <div class="sm:col-span-2 sm:flex sm:justify-end">
             <button
               type="submit"
-              class="mt-2 inline-flex w-full items-center justify-center rounded-md border border-transparent bg-teal-500 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 sm:w-auto"
+              class="mt-2 inline-flex w-full items-center justify-center rounded-md border border-transparent bg-teal-500 px-6 py-3 text-base font-medium text-white shadow-xs hover:bg-teal-600 focus:outline-hidden focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 sm:w-auto"
             >
               Submit
             </button>

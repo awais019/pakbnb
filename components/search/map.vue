@@ -131,7 +131,7 @@
   }
 
   .mapboxgl-ctrl-group button {
-    @apply w-8 h-8 focus:outline-none transition-colors rounded-md;
+    @apply w-8 h-8 focus:outline-hidden transition-colors rounded-md;
   }
   .mapboxgl-ctrl-group button:focus:first-child,
   .mapboxgl-ctrl-group button:focus:last-child,
@@ -197,6 +197,6 @@
     @apply rounded-xl p-3 pt-5;
   }
   .mapboxgl-popup-close-button {
-    @apply outline-none w-3.5 h-3.5 p-1 ml-3 mr-1 top-1 rounded-full flex items-center justify-center bg-black text-white hover:bg-black;
+    @apply outline-hidden w-3.5 h-3.5 p-1 ml-3 mr-1 top-1 rounded-full flex items-center justify-center bg-black text-white hover:bg-black;
   }
 </style>

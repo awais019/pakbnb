@@ -85,7 +85,7 @@
 <style lang="postcss" scoped>
   input,
   textarea {
-    @apply bg-white outline-none rounded-lg;
+    @apply bg-white outline-hidden rounded-lg;
     border: 2px solid #ebebeb;
   }
   textarea {

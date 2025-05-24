@@ -1,6 +1,6 @@
 <template>
   <header
-    class="bg-white w-full h-20 flex justify-between items-center shadow px-20 text-secondary font-normal"
+    class="bg-white w-full h-20 flex justify-between items-center shadow-sm px-20 text-secondary font-normal"
     :class="[isSticky ? 'sticky top-0 z-50' : '']"
   >
     <div

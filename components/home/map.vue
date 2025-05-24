@@ -77,7 +77,7 @@
   }
 
   .mapboxgl-ctrl-group button {
-    @apply w-8 h-8 focus:outline-none transition-colors rounded-md;
+    @apply w-8 h-8 focus:outline-hidden transition-colors rounded-md;
   }
   .mapboxgl-ctrl-group button:focus:first-child,
   .mapboxgl-ctrl-group button:focus:last-child,

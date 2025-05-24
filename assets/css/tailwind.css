@@ -1,5 +1,5 @@
-@import "main.css";
-@import "fonts.css";
+@import './main.css';
+@import './fonts.css';
 
 @layer base {
   h1 {

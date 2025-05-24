@@ -83,6 +83,6 @@
 
 <style lang="postcss" scoped>
   button {
-    @apply p-3 rounded-lg bg-primary outline-none text-white font-medium;
+    @apply p-3 rounded-lg bg-primary outline-hidden text-white font-medium;
   }
 </style>

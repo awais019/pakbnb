@@ -1,3 +1,75 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@theme {
+  --breakpoint-*: initial;
+  --breakpoint-4xl: 1920px;
+
+  --color-primary: #ff5c23;
+  --color-secondary: #181818;
+  --color-secondary-light: #f6f8fb;
+  --color-athens-gray: #f3f4f6;
+  --color-mischka: #d1d5db;
+
+  --font-sans: Lato;
+  --font-sans--0: ui-sans-serif;
+  --font-sans--1: system-ui;
+  --font-sans--2: sans-serif;
+  --font-sans--3: 'Apple Color Emoji';
+  --font-sans--4: 'Segoe UI Emoji';
+  --font-sans--5: 'Segoe UI Symbol';
+  --font-sans--6: 'Noto Color Emoji';
+  --font-sans--length: 7;
+
+  --container-2xl: 1280px;
+  --container-4xl: 1920px;
+
+  --width-30\%: 30%;
+  --width-70\%: 70%;
+
+  --min-height-80vh: 80vh;
+
+  --radius-4xl: 2rem;
+  --radius-5xl: 2.5rem;
+
+  --border-width-1: 1px;
+
+  --shadow-xl:
+    0px 100px 80px rgba(0, 0, 0, 0.07),
+    0px 41.7776px 33.4221px rgba(0, 0, 0, 0.0503198),
+    0px 22.3363px 17.869px rgba(0, 0, 0, 0.0417275),
+    0px 12.5216px 10.0172px rgba(0, 0, 0, 0.035),
+    0px 6.6501px 5.32008px rgba(0, 0, 0, 0.0282725),
+    0px 2.76726px 2.21381px rgba(0, 0, 0, 0.0196802);
+  --shadow-custom:
+    0px 14px 43px rgba(0, 0, 0, 0.12),
+    0px 1.75302px 29.8928px rgba(0, 0, 0, 0.06);
+
+  --background-image-minus-icon: url('assets/images/icons/minus.svg');
+  --background-image-plus-icon: url('assets/images/icons/plus.svg');
+  --background-image-location-icon: url('assets/images/icons/location.svg');
+  --background-image-arrows-expand-icon: url('assets/images/icons/arrows-expand.svg');
+  --background-image-arrows-shrink-icon: url('assets/images/icons/arrows-shrink.svg');
+  --background-image-checked-icon: url('assets/images/icons/checked.svg');
+  --background-image-marker: url('assets/images/icons/marker.svg');
+
+  --grid-template-columns-2: 1fr 5fr;
+  --grid-template-columns-2x: 1fr 1fr;
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}

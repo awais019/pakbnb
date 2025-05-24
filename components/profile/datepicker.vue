@@ -76,6 +76,6 @@
 
 <style lang="postcss" scoped>
   input {
-    @apply block outline-none mb-2 bg-transparent border-1 border-gray-300  rounded-md p-2;
+    @apply block outline-hidden mb-2 bg-transparent border-1 border-gray-300  rounded-md p-2;
   }
 </style>
